@@ -1,0 +1,7 @@
+{
+  "name": "attendance",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

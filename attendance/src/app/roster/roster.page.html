@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Liste des Etudiants</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let student of students">
+      <ion-item>
+        <ion-icon name="person-outline"></ion-icon>
+        Etudiant n'{{student.id}}: {{student.firstName}} {{student.lastName}}
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option>Favorite</ion-item-option>
+        <ion-item-option color="danger">Delete</ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="start">
+        <ion-item-option color="success">Archive</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
