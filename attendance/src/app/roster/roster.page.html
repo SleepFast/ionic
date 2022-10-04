@@ -15,8 +15,8 @@
       <ion-item>
         <ion-icon slot="start" name="person-outline"></ion-icon>
         <ion-label>{{student.firstName}} {{student.lastName}}</ion-label>
-        <ion-icon *ngIf="student.status == 'present'" slot="end" name="eye-outline"></ion-icon>
-        <ion-icon *ngIf="student.status == 'absent'" slot="end" name="eye-off-outline"></ion-icon>
+        <ion-icon *ngIf="student.status === 'present'" slot="end" name="eye-outline"></ion-icon>
+        <ion-icon *ngIf="student.status === 'absent'" slot="end" name="eye-off-outline"></ion-icon>
         <ion-buttons slot="end">
           <ion-button (click)="presentActionSheet(student)">
             <ion-icon slot="icon-only" name="ellipsis-horizontal-outline"></ion-icon>
@@ -31,11 +31,6 @@
 
     </ion-item-sliding>
   </ion-list>
-
-  <div class="container">
-    <ion-button (click)="presentActionSheet()">Open</ion-button>
-    <code *ngIf="result"> {{ result }} </code>
-  </div>
 
   <div><input [(ngModel)]="textVariable" type="text"></div>
   <div>{{textVariable}}</div>
