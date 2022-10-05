@@ -24,7 +24,7 @@ export class EtudiantPage implements OnInit {
         this.etudiantDetails = student
         this.editedDetails = Object.assign({}, student)
       }
-    })
+    });
 
   }
   handleSave() {
@@ -32,7 +32,7 @@ export class EtudiantPage implements OnInit {
   }
 
   async openDoc() {
-    await Browser.open({ url: "https://ionic.io/docs" })
+    await Browser.open({ url: "https://ionic.io/docs" });
   }
 
   async openShare() {

@@ -9,9 +9,9 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngIf="tournaments.length == 0; else elseTournament">POUET</ion-item>
+    <ion-item *ngIf="tournaments.length === 0; else elseTournament">POUET</ion-item>
       <ion-item #elseTournament *ngFor="let tournament of tournaments">
-        <ion-card>
+        <ion-card routerLink="/details/{{ tournament.id }}" routerDirection="forward">
           <ion-card-content>
             <img src="https://www.univ-grenoble-alpes.fr/medias/photo/uga-soutien-etudiants_1611570121559-jpg" alt="">
           </ion-card-content>
@@ -24,10 +24,10 @@
                       <ion-label>{{ tournament.name}}</ion-label>
                     </ion-col>
                     <ion-col class="ion-text-end">
-                      <ion-label *ngIf="tournament.status == 'finished'" color="warning" class="ion-text-uppercase">
+                      <ion-label *ngIf="tournament.status === 'finished'" color="warning" class="ion-text-uppercase">
                         {{ tournament.status }}    
                       </ion-label>
-                      <ion-label *ngIf="tournament.status == 'active'" color="success" class="ion-text-uppercase">
+                      <ion-label *ngIf="tournament.status === 'active'" color="success" class="ion-text-uppercase">
                         {{ tournament.status }}    
                       </ion-label>
                     </ion-col>
@@ -35,7 +35,7 @@
                 </ion-grid>
               </ion-card-title>
               <ion-card-subtitle>
-                <ion-label class="ion-padding-start">Nombre d'équipe : {{ tournament.rosterNumber }}</ion-label>
+                <ion-label class="ion-padding-start">Teams inside this tournament : {{ tournament.rosterNumber }}</ion-label>
               </ion-card-subtitle>
             </ion-card-header>
             

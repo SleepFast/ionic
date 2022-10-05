@@ -10,15 +10,17 @@ import {  Student,StudentService } from '../student.service';
 })
 export class RosterPage implements OnInit {
   public students: Student[];
-  
-  constructor(private studentService: StudentService, private actionSheetCtrl: ActionSheetController, private alertController: AlertController, private toastController: ToastController) {
+
+  constructor(private studentService: StudentService,
+    private actionSheetCtrl: ActionSheetController,
+    private alertController: AlertController,
+    private toastController: ToastController) {
   }
-  
+
   async deleteStudent(student: Student) {
-    this.students = this.students.filter((s) => 
-    s.id !== student.id)
-    console.log(this.students)
-    this.presentToast(student)
+    this.students = this.students.filter((s) => s.id !== student.id);
+    console.log(this.students);
+    this.presentToast(student);
   }
 
   async presentToast(student: Student) {
@@ -40,7 +42,7 @@ export class RosterPage implements OnInit {
         {
           text: 'Supprimer',
           handler: () => {
-            this.deleteStudent(student)
+            this.deleteStudent(student);
           }
         },
         {
@@ -65,7 +67,7 @@ export class RosterPage implements OnInit {
             action: 'delete',
           },
           handler: () => {
-            this.presentAlert(student)
+            this.presentAlert(student);
           }
         },
         {
@@ -75,7 +77,7 @@ export class RosterPage implements OnInit {
             action: 'share',
           },
           handler: () => {
-            student.status = 'present'            
+            student.status = 'present';
           }
         },
         {
@@ -85,7 +87,7 @@ export class RosterPage implements OnInit {
             action: 'share',
           },
           handler: () => {
-            student.status = 'absent'
+            student.status = 'absent';
           }
         },
         {

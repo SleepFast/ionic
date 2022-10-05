@@ -14,9 +14,8 @@ export class HomePage implements OnInit {
   constructor(private tournamentService: TournamentService, private toastController: ToastController) {}
 
   async deleteTournament(tournament: Tournament) {
-    this.tournaments = this.tournaments.filter((t) => 
-    t.id !== tournament.id)
-    this.presentToast(tournament)
+    this.tournaments = this.tournaments.filter((t) => t.id !== tournament.id);
+    this.presentToast(tournament);
   }
 
   async presentToast(tournament: Tournament) {
@@ -25,11 +24,11 @@ export class HomePage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-    
+
     await toast.present();
   }
 
   ngOnInit() {
-    this.tournaments = this.tournamentService.getAll();    
+    this.tournaments = this.tournamentService.getAll();
   }
 }

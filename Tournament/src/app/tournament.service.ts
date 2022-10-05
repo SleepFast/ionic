@@ -23,21 +23,21 @@ export class TournamentService {
   constructor() {
     this.tournaments = [
       { id: '1', name: 'Jean', rosterNumber: '6', roster: [
-        {id: '1', pouet: "POUET"}, {id: '2', pouet: "tat"}
+        {id: '1', pouet: 'POUET'}, {id: '2', pouet: 'tat'}
       ], status: 'active'},
       { id: '2', name: 'Pierre', rosterNumber: '5', roster: [
-        {id: '1', pouet: "POUET"}, {id: '2', pouet: "pit"}
-      ], status: 'active'},
+        {id: '1', pouet: 'POUET'}, {id: '2', pouet: 'pit'}
+      ], status: 'finished'},
       { id: '3', name: 'Harry', rosterNumber: '8', roster: [
-        {id: '1', pouet: "POUET"}, {id: '2', pouet: "pat"}
+        {id: '1', pouet: 'POUET'}, {id: '2', pouet: 'pat'}
       ], status: 'finished'},
       { id: '4', name: 'Corinne', rosterNumber: '10', roster: [
-        {id: '1', pouet: "POUET"}, {id: '2', pouet: "prout"}
+        {id: '1', pouet: 'POUET'}, {id: '2', pouet: 'prout'}
       ], status: 'active'},
       { id: '5', name: 'Mélusine', rosterNumber: '4', roster: [
-        {id: '1', pouet: "POUET"}, {id: '2', pouet: "ploup"}
+        {id: '1', pouet: 'POUET'}, {id: '2', pouet: 'ploup'}
       ], status: 'finished'}
-    ]
+    ];
   }
 
   getAll(){
