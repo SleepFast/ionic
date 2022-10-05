@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentService } from '../student.service';
+import { Browser } from '@capacitor/browser';
+import { Share } from '@capacitor/share';
 
 
 @Component({
@@ -27,6 +29,19 @@ export class EtudiantPage implements OnInit {
   }
   handleSave() {
     Object.assign(this.etudiantDetails, this.editedDetails)
+  }
+
+  async openDoc() {
+    await Browser.open({ url: "https://ionic.io/docs" })
+  }
+
+  async openShare() {
+    await Share.share({
+      title: 'See cool stuff',
+      text: 'Really awesome thing you need to see right meow',
+      url: 'http://ionicframework.com/',
+      dialogTitle: 'Share with buddies',
+    });
   }
 
 }
