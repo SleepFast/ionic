@@ -17,6 +17,7 @@ export class RosterPage implements OnInit {
   async deleteStudent(student: Student) {
     this.students = this.students.filter((s) => 
     s.id !== student.id)
+    console.log(this.students)
     this.presentToast(student)
   }
 
