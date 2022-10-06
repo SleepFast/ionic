@@ -12,18 +12,23 @@ export class CreatePage implements OnInit {
   constructor(private tournamentService: TournamentService) {}
 
   ngOnInit() {
-  }
-  
-  setNewTournament() {
-    return this.tournamentService.setNewCurrentTournament(this.newCurrentTournament);
+    this.newCurrentTournament = {
+      id: this.tournamentService.getMaxId(),
+      name: '',
+      rosterNumber: null,
+      rosters: this.tournamentService.returnRoster(),
+      status: 'active',
+    };
   }
 
-  getNewCurrentRosterNumber(newCurrentTournament: Tournament) {
-    return this.newCurrentTournament.rosterNumber >= 2 ;
+  handleCreate() {
+    this.tournamentService.create(this.newCurrentTournament);
+    this.ngOnInit();
+    this.tournamentService.newRoster(this.newCurrentTournament);
   }
 
   handleSave() {
-    this.tournamentService.create(this.newCurrentTournament);
-    console.log(this.tournamentService.getAll());
+    console.log(this.newCurrentTournament);
+    this.tournamentService.setRoster(this.newCurrentTournament);
   }
 }

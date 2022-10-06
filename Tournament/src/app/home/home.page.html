@@ -6,7 +6,7 @@
 
 <ion-content>
     <!-- <ion-item *ngIf="tournaments.length === 0; else elseTournament">POUET</ion-item> -->
-      <ion-item *ngFor="let tournament of getTournaments()">
+      <ion-item *ngFor="let tournament of getTournaments().slice().reverse()">
         <ion-card>
           <ion-card-content routerLink="/details/{{ tournament.id }}" routerDirection="forward">
             <img src="https://www.univ-grenoble-alpes.fr/medias/photo/uga-soutien-etudiants_1611570121559-jpg" alt="">

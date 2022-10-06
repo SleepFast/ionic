@@ -7,19 +7,20 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label position="stacked">Tournament's name</ion-label>
-      <ion-input [(ngModel)]="setNewTournament().name"></ion-input>
+      <ion-label position="floating">Tournament's name</ion-label>
+      <ion-input [(ngModel)]="newCurrentTournament.name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Number of teams</ion-label>
-      <!-- <ion-input [(ngModel)]="setNewTournament().rosterNumber"></ion-input> -->
+      <ion-label position="floating">Number of teams</ion-label>
+      <ion-input [(ngModel)]="newCurrentTournament.rosterNumber" type="number"></ion-input>
     </ion-item>
-    <!-- <ion-list *ngIf="getNewCurrentRosterNumber(setNewTournament())">
-      <ion-item *ngFor="let roster of rosters">
-        <ion-label position="stacked">{{ roster.id }}</ion-label>
+    <ion-list *ngIf="newCurrentTournament.rosterNumber >= 2">
+      <ion-item *ngFor="let roster of newCurrentTournament.rosters">
+        <ion-label position="stacked"> Team number : {{ roster.id }}</ion-label>
         <ion-input [(ngModel)]="roster.name"></ion-input>
       </ion-item>
-    </ion-list> -->
+    </ion-list>
   </ion-list>
-  <ion-button (click)="handleSave()">CREATE</ion-button>
+  <ion-button (click)="handleSave()">SAVE</ion-button>
+  <ion-button (click)="handleCreate()">CREATE</ion-button>
 </ion-content>

@@ -5,7 +5,7 @@
       <ion-tab-button *ngFor="let page of appPages" [tab]="page.url">
         <ion-icon [name]="page.icon"></ion-icon>
         <ion-label>{{ page.title }}</ion-label>
-        <ion-badge color="success" *ngIf="page.title == 'Tournaments'">{{ tournamentService.getNbTournaments() }}</ion-badge>
+        <ion-badge color="success" *ngIf="page.title === 'Tournaments'">{{ tournamentService.getNbTournaments() }}</ion-badge>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
