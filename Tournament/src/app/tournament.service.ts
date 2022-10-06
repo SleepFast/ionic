@@ -18,7 +18,7 @@ export interface Rosters {
   providedIn: 'root',
 })
 export class TournamentService {
-  private tournaments: Tournament[] = [
+  public tournaments: Tournament[] = [
     {
       id: 1,
       name: 'Jean',
@@ -71,9 +71,31 @@ export class TournamentService {
     },
   ];
   private tournament;
-  private maxId;
+  public maxId;
+  public newCurrentTournament;
 
   constructor() {}
+
+  setNewCurrentTournament(newCurrentTournament: Tournament) {
+    this.newCurrentTournament = {
+      id: this.getMaxId() + 1,
+      name: '',
+      rosterNumber: null,
+      rosters: this.setRoster(),
+      status: 'active',
+    };
+    return this.newCurrentTournament;
+  }
+
+  setRoster() {
+    const rosters = []
+    if (this.newCurrentTournament.rosterNumber >= 2) {
+      for(let i = 1; i <= this.newCurrentTournament.rosterNumber; i++) {
+        rosters.push({ id: i, name: ''})
+      }
+    }
+    return rosters
+  }
 
   create(tournament: Tournament) {
     this.tournaments.push(tournament);
@@ -89,7 +111,7 @@ export class TournamentService {
 
   getMaxId() {
     this.maxId = Math.max(...this.tournaments.map(idNumber => idNumber.id));
-    return this.maxId
+    return this.maxId + 1
   }
 
   getNbTournaments() {

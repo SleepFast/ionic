@@ -12,21 +12,10 @@ export class CreatePage implements OnInit {
   constructor(private tournamentService: TournamentService) {}
 
   ngOnInit() {
-    this.newCurrentTournament = {
-      id: this.tournamentService.getMaxId() + 1,
-      name: '',
-      rosterNumber: null,
-      rosters: this.setRoster(),
-      status: 'active',
-    };
   }
-
-  setRoster() {
-    const rosters = []
-    for(let i = 1; i <= this.newCurrentTournament.rosterNumber; i++) {
-      rosters.push({ id: i, name: ''})
-    }
-    return rosters
+  
+  setNewTournament() {
+    return this.tournamentService.setNewCurrentTournament(this.newCurrentTournament);
   }
 
   getNewCurrentRosterNumber(newCurrentTournament: Tournament) {
@@ -35,7 +24,6 @@ export class CreatePage implements OnInit {
 
   handleSave() {
     this.tournamentService.create(this.newCurrentTournament);
-    this.ngOnInit();
     console.log(this.tournamentService.getAll());
   }
 }
