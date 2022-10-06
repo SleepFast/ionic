@@ -3,19 +3,21 @@ import { Tournament, TournamentService } from '../tournament.service';
 import { ToastController } from '@ionic/angular';
 import { Share } from '@capacitor/share';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public tournaments: Tournament[];
+  private tournaments: Tournament[];
 
-  constructor(private tournamentService: TournamentService, private toastController: ToastController) {}
+  constructor(
+    private tournamentService: TournamentService,
+    private toastController: ToastController
+  ) {}
 
-  async deleteTournament(tournament: Tournament) {
-    this.tournaments = this.tournaments.filter((t) => t.id !== tournament.id);
+  deleteTournament(tournament: Tournament) {
+    this.tournamentService.delete(tournament);
     this.presentToast(tournament);
   }
 
@@ -23,7 +25,7 @@ export class HomePage implements OnInit {
     const toast = await this.toastController.create({
       message: `${tournament.name} a été supprimé`,
       duration: 3000,
-      position: 'top'
+      position: 'top',
     });
 
     await toast.present();
@@ -40,5 +42,10 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.tournaments = this.tournamentService.getAll();
+    console.log('home ngOninit');
+  }
+
+  getTournaments() {
+    return this.tournamentService.getAll();
   }
 }

@@ -9,21 +9,20 @@ import { Tournament, TournamentService } from '../tournament.service';
 export class CreatePage implements OnInit {
   private newCurrentTournament: Tournament;
 
-  constructor(private tournamentService: TournamentService) { }
+  constructor(private tournamentService: TournamentService) {}
 
   ngOnInit() {
     this.newCurrentTournament = {
-      id : this.tournamentService.tournaments.length + 1,
+      id: this.tournamentService.getAll().length + 1,
       name: '',
       rosterNumber: '',
       roster: [],
-      status: 'active'
-    }
+      status: 'active',
+    };
   }
 
   handleSave() {
-    this.tournamentService.create(this.newCurrentTournament)
-    console.log(this.tournamentService.tournaments);
-    
+    this.tournamentService.create(this.newCurrentTournament);
+    console.log(this.tournamentService.getAll());
   }
 }
