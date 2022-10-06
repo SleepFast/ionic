@@ -14,6 +14,12 @@
       <ion-label position="stacked">Number of teams</ion-label>
       <ion-input [(ngModel)]="newCurrentTournament.rosterNumber"></ion-input>
     </ion-item>
+    <ion-list *ngIf="getNewCurrentRosterNumber(newCurrentTournament)">
+      <ion-item *ngFor="let roster of rosters">
+        <ion-label position="stacked">{{ roster.id }}</ion-label>
+        <ion-input [(ngModel)]="roster.name"></ion-input>
+      </ion-item>
+    </ion-list>
   </ion-list>
   <ion-button (click)="handleSave()">CREATE</ion-button>
 </ion-content>

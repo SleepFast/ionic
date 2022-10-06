@@ -13,16 +13,29 @@ export class CreatePage implements OnInit {
 
   ngOnInit() {
     this.newCurrentTournament = {
-      id: this.tournamentService.getAll().length + 1,
+      id: this.tournamentService.getMaxId() + 1,
       name: '',
-      rosterNumber: '',
-      roster: [],
+      rosterNumber: null,
+      rosters: this.setRoster(),
       status: 'active',
     };
   }
 
+  setRoster() {
+    const rosters = []
+    for(let i = 1; i <= this.newCurrentTournament.rosterNumber; i++) {
+      rosters.push({ id: i, name: ''})
+    }
+    return rosters
+  }
+
+  getNewCurrentRosterNumber(newCurrentTournament: Tournament) {
+    return this.newCurrentTournament.rosterNumber >= 2 ;
+  }
+
   handleSave() {
     this.tournamentService.create(this.newCurrentTournament);
+    this.ngOnInit();
     console.log(this.tournamentService.getAll());
   }
 }
