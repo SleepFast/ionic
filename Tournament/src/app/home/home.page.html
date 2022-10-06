@@ -1,22 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     <ion-title>Tournaments</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngIf="tournaments.length === 0; else elseTournament">POUET</ion-item>
-      <ion-item #elseTournament *ngFor="let tournament of tournaments">
-        <ion-card routerLink="/details/{{ tournament.id }}" routerDirection="forward">
-          <ion-card-content>
+    <!-- <ion-item *ngIf="tournaments.length === 0; else elseTournament">POUET</ion-item> -->
+      <ion-item #elseTournament *ngFor="let tournament of tournaments.slice().reverse()">
+        <ion-card>
+          <ion-card-content routerLink="/details/{{ tournament.id }}" routerDirection="forward">
             <img src="https://www.univ-grenoble-alpes.fr/medias/photo/uga-soutien-etudiants_1611570121559-jpg" alt="">
           </ion-card-content>
           
-            <ion-card-header>
+            <ion-card-header  routerLink="/details/{{ tournament.id }}" routerDirection="forward">
               <ion-card-title>
                 <ion-grid>
                   <ion-row class="ion-align-items-center">
@@ -39,8 +36,19 @@
               </ion-card-subtitle>
             </ion-card-header>
             
-            <ion-card-content class="ion-text-center">
-              <ion-button (click)="deleteTournament(tournament)" color="danger">Delete</ion-button>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row class="ion-justify-content-around">
+                  <ion-col class="ion-text-center">
+                    <ion-button (click)="deleteTournament(tournament)" color="danger">Delete</ion-button>
+                  </ion-col>
+                  <ion-col class="ion-text-center">
+                    <ion-button (click)="openShare(tournament)" shape="round">
+                      <ion-icon name="share-social-outline"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
           </ion-card-content>
         </ion-card>
       </ion-item>

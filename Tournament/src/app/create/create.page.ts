@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tournament, TournamentService } from '../tournament.service';
 
 @Component({
   selector: 'app-create',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create.page.scss'],
 })
 export class CreatePage implements OnInit {
+  private newCurrentTournament: Tournament;
 
-  constructor() { }
+  constructor(private tournamentService: TournamentService) { }
 
   ngOnInit() {
+    this.newCurrentTournament = {
+      id : this.tournamentService.tournaments.length + 1,
+      name: '',
+      rosterNumber: '',
+      roster: [],
+      status: 'active'
+    }
   }
 
+  handleSave() {
+    this.tournamentService.create(this.newCurrentTournament)
+    console.log(this.tournamentService.tournaments);
+    
+  }
 }

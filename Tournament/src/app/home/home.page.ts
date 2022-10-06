@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tournament, TournamentService } from '../tournament.service';
 import { ToastController } from '@ionic/angular';
+import { Share } from '@capacitor/share';
 
 
 @Component({
@@ -26,6 +27,15 @@ export class HomePage implements OnInit {
     });
 
     await toast.present();
+  }
+
+  async openShare(tournament: Tournament) {
+    await Share.share({
+      title: `See my Tournament ${tournament.name}`,
+      text: `This tournament is composed of ${tournament.rosterNumber} teams`,
+      url: `details/${tournament.id}`,
+      dialogTitle: 'Share this tournament with your friends',
+    });
   }
 
   ngOnInit() {
