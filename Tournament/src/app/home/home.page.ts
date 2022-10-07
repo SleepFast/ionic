@@ -16,11 +16,17 @@ export class HomePage implements OnInit {
     private toastController: ToastController
   ) {}
 
+  /** 
+  *@param tournament
+  */
   deleteTournament(tournament: Tournament) {
     this.tournamentService.delete(tournament);
     this.presentToast(tournament);
   }
 
+  /** 
+  *@param tournament
+  */
   async presentToast(tournament: Tournament) {
     const toast = await this.toastController.create({
       message: `${tournament.name} a été supprimé`,
@@ -31,6 +37,9 @@ export class HomePage implements OnInit {
     await toast.present();
   }
 
+  /** 
+  *@param tournament
+  */
   async openShare(tournament: Tournament) {
     await Share.share({
       title: `See my Tournament ${tournament.name}`,

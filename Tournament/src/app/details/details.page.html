@@ -5,5 +5,21 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item *ngFor="let match of group">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-title class="ion-text-center">Match : {{ match[0].groupId }}</ion-title>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngFor="let roster of match" class="ion-text-center">
+            <ion-label class="ion-text-center">{{ roster.name }} n°{{ roster.id }}</ion-label>
+            <ion-button (click)="updateGroup(roster, match)">Won</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>

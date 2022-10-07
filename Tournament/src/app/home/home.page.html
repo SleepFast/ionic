@@ -5,50 +5,56 @@
 </ion-header>
 
 <ion-content>
-    <!-- <ion-item *ngIf="tournaments.length === 0; else elseTournament">POUET</ion-item> -->
-      <ion-item *ngFor="let tournament of getTournaments().slice().reverse()">
-        <ion-card>
-          <ion-card-content routerLink="/details/{{ tournament.id }}" routerDirection="forward">
-            <img src="https://www.univ-grenoble-alpes.fr/medias/photo/uga-soutien-etudiants_1611570121559-jpg" alt="">
-          </ion-card-content>
-          
-            <ion-card-header  routerLink="/details/{{ tournament.id }}" routerDirection="forward">
-              <ion-card-title>
-                <ion-grid>
-                  <ion-row class="ion-align-items-center">
-                    <ion-col>
-                      <ion-label>{{ tournament.name}}</ion-label>
-                    </ion-col>
-                    <ion-col class="ion-text-end">
-                      <ion-label *ngIf="tournament.status === 'finished'" color="warning" class="ion-text-uppercase">
-                        {{ tournament.status }}    
-                      </ion-label>
-                      <ion-label *ngIf="tournament.status === 'active'" color="success" class="ion-text-uppercase">
-                        {{ tournament.status }}    
-                      </ion-label>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-card-title>
-              <ion-card-subtitle>
-                <ion-label class="ion-padding-start">Teams inside this tournament : {{ tournament.rosterNumber }}</ion-label>
-              </ion-card-subtitle>
-            </ion-card-header>
-            
-            <ion-card-content>
-              <ion-grid>
-                <ion-row class="ion-justify-content-around">
-                  <ion-col class="ion-text-center">
-                    <ion-button (click)="deleteTournament(tournament)" color="danger">Delete</ion-button>
-                  </ion-col>
-                  <ion-col class="ion-text-center">
-                    <ion-button (click)="openShare(tournament)" shape="round">
-                      <ion-icon name="share-social-outline"></ion-icon>
-                    </ion-button>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </ion-item>
+  <ion-grid class="ion-text-center ion-margin-top" *ngIf="getTournaments().length === 0; else elseTournament">
+    <ion-row>
+      <ion-col>
+        <ion-subtitle>THERE IS NO TOURNAMENT</ion-subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item #elseTournament *ngFor="let tournament of getTournaments().slice().reverse()">
+    <ion-card>
+      <ion-card-content routerLink="/details/{{ tournament.id }}" routerDirection="forward">
+        <img src="https://www.univ-grenoble-alpes.fr/medias/photo/uga-soutien-etudiants_1611570121559-jpg" alt="">
+      </ion-card-content>
+      
+        <ion-card-header  routerLink="/details/{{ tournament.id }}" routerDirection="forward">
+          <ion-card-title>
+            <ion-grid>
+              <ion-row class="ion-align-items-center">
+                <ion-col>
+                  <ion-label>{{ tournament.name}}</ion-label>
+                </ion-col>
+                <ion-col class="ion-text-end">
+                  <ion-label *ngIf="tournament.status === 'finished'" color="warning" class="ion-text-uppercase">
+                    {{ tournament.status }}    
+                  </ion-label>
+                  <ion-label *ngIf="tournament.status === 'active'" color="success" class="ion-text-uppercase">
+                    {{ tournament.status }}    
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-title>
+          <ion-card-subtitle>
+            <ion-label class="ion-padding-start">Teams inside this tournament : {{ tournament.rosterNumber }}</ion-label>
+          </ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="ion-justify-content-around">
+              <ion-col class="ion-text-center">
+                <ion-button (click)="deleteTournament(tournament)" color="danger">Delete</ion-button>
+              </ion-col>
+              <ion-col class="ion-text-center">
+                <ion-button (click)="openShare(tournament)" shape="round">
+                  <ion-icon name="share-social-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
 </ion-content>

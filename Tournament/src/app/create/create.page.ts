@@ -21,14 +21,28 @@ export class CreatePage implements OnInit {
     };
   }
 
+  check() {
+    let a = false
+    for(const roster of this.tournamentService.returnRoster()) {
+      if(roster.name === '') {
+        a = false;
+        break
+      } else {
+        a = true;
+      }
+    }
+    return a;
+  }
+
   handleCreate() {
     this.tournamentService.create(this.newCurrentTournament);
+    this.tournamentService.randomizeRosters(this.newCurrentTournament);
+    this.tournamentService.setGroups(this.newCurrentTournament);
     this.ngOnInit();
     this.tournamentService.newRoster(this.newCurrentTournament);
   }
 
   handleSave() {
-    console.log(this.newCurrentTournament);
     this.tournamentService.setRoster(this.newCurrentTournament);
   }
 }
